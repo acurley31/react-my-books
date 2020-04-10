@@ -19,6 +19,19 @@ class App extends Component {
         isLoading: false,
     }
 
+    componentDidMount() {
+        const storage = localStorage.getItem('react-my-books-state')
+        const data = JSON.parse(storage)
+        if (data) {
+            this.setState(data)
+        }
+    }
+
+    saveToStorage = () => {
+        const data = JSON.stringify(this.state)
+        localStorage.setItem('react-my-books-state', data)
+    }
+
     searchBooks = (query) => {
         if (query !== '') {
             this.setState({ isLoading: true })
@@ -37,13 +50,13 @@ class App extends Component {
         this.removeBook(book.id)
         this.setState((prevState) => ({
             books: [{ ...book, shelfId: shelfId}, ...prevState.books]
-        }))
+        }), () => this.saveToStorage())
     }
 
     removeBook = (bookId) => {
         this.setState((prevState) => ({
             books: prevState.books.filter(b => b.id !== bookId)
-        }))
+        }), () => this.saveToStorage())
     }
 
     filterSearchResults = () => {
