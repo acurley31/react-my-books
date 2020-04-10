@@ -21,6 +21,8 @@ This is a small scale application to manage your library of books. Your library 
 ## Notes and Usage
 When you first launch the application, your library will be empty since no books have been added. Your library books will be persisted in case you refresh the page.
 
+Books that are in your library are filtered out when you search for new books.
+
 The [Books API](https://github.com/udacity/reactnd-project-myreads-starter/blob/master/src/BooksAPI.js) is provided by Udacity.
 
 ## Screenshots
